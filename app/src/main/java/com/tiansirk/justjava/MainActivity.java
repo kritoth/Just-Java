@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
@@ -25,25 +26,42 @@ public class MainActivity extends AppCompatActivity {
     }
     // This method is called when the plus button is clicked.
     public int increment(View v){
-        numOfCoffes++;
-        display(numOfCoffes);
-        return numOfCoffes;
+        if(numOfCoffes < 100) {
+            numOfCoffes++;
+            display(numOfCoffes);
+            return numOfCoffes;
+        } else {
+            display(numOfCoffes);
+            Toast.makeText(getApplicationContext(), R.string.message_above_hundred,
+                    Toast.LENGTH_LONG).show();
+            return numOfCoffes;
+        }
     }
     // This method is called when the minus  button is clicked.
     public int decrement(View v){
-        numOfCoffes--;
-        display(numOfCoffes);
-        return numOfCoffes;
+        if(numOfCoffes > 1){
+            numOfCoffes--;
+            display(numOfCoffes);
+            return numOfCoffes;
+        } else {
+            display(numOfCoffes);
+            Toast.makeText(getApplicationContext(), R.string.message_below_one,
+                    Toast.LENGTH_LONG).show();
+            return numOfCoffes;
+        }
+
     }
 
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int totalPrice = price * numOfCoffes;
+        String name = ((EditText)findViewById(R.id.name_text_view)).getText().toString();
         boolean hasWhippedCream = ((CheckBox)findViewById(R.id.checkBox_whipped_cream)).isChecked();
         boolean hasChocolate = ((CheckBox)findViewById(R.id.checkBox_chocolate)).isChecked();
-        String name = ((EditText)findViewById(R.id.name_text_view)).getText().toString();
+
+        int totalPrice = calculatePrice(hasChocolate, hasWhippedCream);
+
         String endMessage = createOrderSummary(name, totalPrice, hasWhippedCream, hasChocolate);
         displayMessage(endMessage);
     }
@@ -66,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
     /*
      * Creates the order summary message
+     * @param user is the name the user typed in
      * @param addWhippedCream is whether or not the user wants whipped cream topping
      * @param addChocolate is whether or not the user wants chocolate topping
      * @param price of the order
@@ -78,5 +97,15 @@ public class MainActivity extends AppCompatActivity {
                 "\nQuantity: " + numOfCoffes +
                 "\nTotal: " + NumberFormat.getCurrencyInstance().format(price) +
                 "\nTnak you!";
+    }
+
+    private int calculatePrice(boolean hasChocolate, boolean hasWhippedCream){
+        int toppings = 0;
+        if(hasChocolate) toppings += 2;
+        if(hasWhippedCream) toppings += 1;
+
+        price = (price + toppings) * numOfCoffes;
+
+        return price;
     }
 }

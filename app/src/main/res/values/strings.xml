@@ -9,4 +9,6 @@
     <string name="chck_whipped">Whipped Cream</string>
     <string name="toppings">Toppings</string>
     <string name="chocolate">Chocolate</string>
+    <string name="message_below_one">You cannot have less than 1 coffe!</string>
+    <string name="message_above_hundred">You cannot have more than 100 coffes!</string>
 </resources>
