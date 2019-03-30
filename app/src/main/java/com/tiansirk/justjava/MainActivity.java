@@ -1,5 +1,7 @@
 package com.tiansirk.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -57,6 +59,15 @@ public class MainActivity extends AppCompatActivity {
 
         String endMessage = createOrderSummary(name, totalPrice, hasWhippedCream, hasChocolate);
         displayMessage(endMessage);
+
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.message_email_subject) + name);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, endMessage);
+        // Verify that the intent will resolve to an activity
+        if (sendIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(sendIntent);
+        }
     }
 
     /**

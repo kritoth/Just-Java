@@ -11,4 +11,5 @@
     <string name="chocolate">Chocolate</string>
     <string name="message_below_one">You cannot have less than 1 coffe!</string>
     <string name="message_above_hundred">You cannot have more than 100 coffes!</string>
+    <string name="message_email_subject">JustJava order for</string>
 </resources>
