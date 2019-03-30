@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
         String endMessage = createOrderSummary(name, totalPrice, hasWhippedCream, hasChocolate);
         displayMessage(endMessage);
 
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
+        Intent sendIntent = new Intent(Intent.ACTION_SENDTO);
+        sendIntent.setData(Uri.parse("mailto:"));
         sendIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.message_email_subject) + name);
         sendIntent.putExtra(Intent.EXTRA_TEXT, endMessage);
         // Verify that the intent will resolve to an activity
