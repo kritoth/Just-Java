@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int numOfCoffes = 0;
     private int price = 5;
+    private String user = "Capt. Kunal";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +24,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     // This method is called when the plus button is clicked.
-    public int increment(View v){
+    public int increment(){
         numOfCoffes++;
         display(numOfCoffes);
         return numOfCoffes;
     }
     // This method is called when the minus  button is clicked.
-    public int decrement(View v){
+    public int decrement(){
         numOfCoffes--;
         display(numOfCoffes);
         return numOfCoffes;
@@ -38,7 +40,12 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        displayPrice(price * numOfCoffes);
+        int totalPrice = price * numOfCoffes;
+        boolean isChecked = ((CheckBox)findViewById(R.id.checkBox)).isChecked();
+
+        String endMessage = createOrderSummary(totalPrice, isChecked);
+
+        displayMessage(endMessage);
     }
 
     /**
@@ -52,10 +59,19 @@ public class MainActivity extends AppCompatActivity {
     /*
      * This method displays the price calculated on the screen
      */
-    private void displayPrice(int number){
-        TextView priceTextView = findViewById(R.id.price_amount);
-        String text = getString(R.string.display_price, NumberFormat.getCurrencyInstance().format(number));
+    private void displayMessage(String message){
+        TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
+        orderSummaryTextView.setText(message);
+    }
 
-        priceTextView.setText(text);
+    /*
+     * Creates the order summary message
+     */
+    public String createOrderSummary(int price, boolean toppingsAsked){
+        return "Name: " + user +
+                "Add whipped cream?: " + toppingsAsked +
+                "\nQuantity: " + numOfCoffes +
+                "\nTotal: " + NumberFormat.getCurrencyInstance().format(price) +
+                "\nTnak you!";
     }
 }
