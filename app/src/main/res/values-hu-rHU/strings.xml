@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="display_price" translatable="false">Összesen: %1sd \nKöszönjük!</string>
+    <string name="quantity" translatable="false">Mennyiség</string>
+    <string name="order_summary">Rendelés összesítő</string>
+    <string name="order">Rendelés</string>
+    <string name="chck_whipped">Tejszínhab</string>
+    <string name="toppings">Feltétek</string>
+    <string name="chocolate">Csokoládé</string>
+    <string name="message_below_one">Nem lehet 1-nél kevesebb kávéd!</string>
+    <string name="message_above_hundred">Nem lehet 100-nál több kávéd!</string>
+    <string name="message_email_subject">JustJava rendelés</string>
+    <string name="end_mess_name">"Név: "</string>
+    <string name="end_mess_whipped">"Kér tejszínhabot?: "</string>
+    <string name="end_mess_choco">"Kér csokoládét?: "</string>
+    <string name="end_mess_quantity">"Mennyiség: "</string>
+    <string name="end_mess_total">"Összesen: "</string>
+    <string name="end_mess_thankx">Köszönjük!</string>
+</resources>
