@@ -25,31 +25,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     // This method is called when the plus button is clicked.
-    public int increment(View v){
-        if(numOfCoffes < 100) {
-            numOfCoffes++;
-            display(numOfCoffes);
-            return numOfCoffes;
-        } else {
-            display(numOfCoffes);
+    public void increment(View v){
+        if(numOfCoffes == 100) {
             Toast.makeText(getApplicationContext(), R.string.message_above_hundred,
                     Toast.LENGTH_LONG).show();
-            return numOfCoffes;
+            return;
         }
+        numOfCoffes++;
+        display(numOfCoffes);
     }
     // This method is called when the minus  button is clicked.
-    public int decrement(View v){
-        if(numOfCoffes > 1){
-            numOfCoffes--;
-            display(numOfCoffes);
-            return numOfCoffes;
-        } else {
-            display(numOfCoffes);
+    public void decrement(View v){
+        if(numOfCoffes == 1){
             Toast.makeText(getApplicationContext(), R.string.message_below_one,
                     Toast.LENGTH_LONG).show();
-            return numOfCoffes;
+            return;
         }
-
+        numOfCoffes--;
+        display(numOfCoffes);
     }
 
     /**
@@ -103,9 +96,7 @@ public class MainActivity extends AppCompatActivity {
         int toppings = 0;
         if(hasChocolate) toppings += 2;
         if(hasWhippedCream) toppings += 1;
-
         price = (price + toppings) * numOfCoffes;
-
         return price;
     }
 }
