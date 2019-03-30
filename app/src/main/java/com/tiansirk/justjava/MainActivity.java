@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -16,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
 
     private int numOfCoffes = 0;
     private int price = 5;
-    private String user = "Capt. Kunal";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +24,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     // This method is called when the plus button is clicked.
-    public int increment(){
+    public int increment(View v){
         numOfCoffes++;
         display(numOfCoffes);
         return numOfCoffes;
     }
     // This method is called when the minus  button is clicked.
-    public int decrement(){
+    public int decrement(View v){
         numOfCoffes--;
         display(numOfCoffes);
         return numOfCoffes;
@@ -41,10 +41,10 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         int totalPrice = price * numOfCoffes;
-        boolean isChecked = ((CheckBox)findViewById(R.id.checkBox)).isChecked();
-
-        String endMessage = createOrderSummary(totalPrice, isChecked);
-
+        boolean hasWhippedCream = ((CheckBox)findViewById(R.id.checkBox_whipped_cream)).isChecked();
+        boolean hasChocolate = ((CheckBox)findViewById(R.id.checkBox_chocolate)).isChecked();
+        String name = ((EditText)findViewById(R.id.name_text_view)).getText().toString();
+        String endMessage = createOrderSummary(name, totalPrice, hasWhippedCream, hasChocolate);
         displayMessage(endMessage);
     }
 
@@ -66,10 +66,15 @@ public class MainActivity extends AppCompatActivity {
 
     /*
      * Creates the order summary message
+     * @param addWhippedCream is whether or not the user wants whipped cream topping
+     * @param addChocolate is whether or not the user wants chocolate topping
+     * @param price of the order
+     * @return text summary
      */
-    public String createOrderSummary(int price, boolean toppingsAsked){
+    public String createOrderSummary(String user, int price, boolean whipped, boolean choco){
         return "Name: " + user +
-                "Add whipped cream?: " + toppingsAsked +
+                "Add whipped cream?: " + whipped +
+                "Add chocolate?: " + choco +
                 "\nQuantity: " + numOfCoffes +
                 "\nTotal: " + NumberFormat.getCurrencyInstance().format(price) +
                 "\nTnak you!";
