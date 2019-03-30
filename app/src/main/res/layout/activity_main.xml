@@ -45,13 +45,8 @@
 
             <TextView
                 android:id="@+id/toppings_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/toppings"
-                android:textColor="@color/colorFont"
-                android:textSize="24sp"
-                android:layout_marginTop="24dp"/>
+                style="@style/labels"
+                android:text="@string/toppings"/>
 
             <CheckBox
                 android:id="@+id/checkBox_whipped_cream"
@@ -73,14 +68,8 @@
 
             <TextView
                 android:id="@+id/quantity_header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="24dp"
-                android:background="@color/backgroundText"
-                android:text="@string/quantity"
-                android:textColor="@color/colorFont"
-                android:textSize="24sp" />
+                style="@style/labels"
+                android:text="@string/quantity" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -123,25 +112,14 @@
 
             <TextView
                 android:id="@+id/price_header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="24dp"
-                android:background="@color/backgroundText"
-                android:text="@string/order_summary"
-                android:textColor="@color/colorFont"
-                android:textSize="24sp" />
+                style="@style/labels"
+                android:text="@string/order_summary" />
 
             <TextView
                 android:id="@+id/order_summary_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="24dp"
-                android:background="@color/backgroundText"
+                style="@style/labels"
                 android:hint="$0.00"
-                android:textColorHint="@color/colorFont"
-                android:textSize="24sp" />
+                android:textColorHint="@color/colorFont" />
 
             <Button
                 android:id="@+id/order"
